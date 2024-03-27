@@ -1,15 +1,13 @@
-"use client"
+"use client";
 
 // quick start create a component with command #rafce
 import Image from "next/image";
 import CustomButton from "./CustomButton";
 
 const Hero = () => {
-  const hanleScroll=()=>{
+  const hanleScroll = () => {};
 
-  }
-
-    return (
+  return (
     <div className="hero">
       <div className="flex-1 pt-36 padding-x">
         <h1 className="hero__title">
@@ -31,13 +29,10 @@ const Hero = () => {
       </div>
       <div className="hero__image-container">
         <div className="hero__image">
-            <Image src="/hero.png" alt="hero"
-            fill className="object-contain"
-            />
-            <div className="hero__image-overlay">
-                
-            </div>
+          <Image src="/hero.png" alt="hero" fill className="object-contain" />
         </div>
+        <div className="hero__image-overlay"></div>
+
       </div>
     </div>
   );
