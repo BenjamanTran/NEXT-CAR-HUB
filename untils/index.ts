@@ -1,3 +1,5 @@
+import { CarProps } from "@/types"
+
 export async function fetchCars() {
   const X_RAPIDAPI_KEY = process.env.X_RAPIDAPI_KEY
   const X_RAPIDAPI_HOST = process.env.X_RAPIDAPI_HOST
@@ -38,4 +40,17 @@ export const calculateCarRent = (city_mpg: number, year: number) => {
 
   return rentalRatePerDay.toFixed(0)
 };
+
+export const generateCarImageUrl = (car: CarProps, angle?: string) => {
+  const { make, model, year } = car
+  const url = new URL('https://cdn.imagin.studio/getimage')
+  url.searchParams.append('customer', process.env.IMGAIN_API_KEY || 'hrjavascript-mastery')
+  url.searchParams.append('make', make)
+  url.searchParams.append('modelFamily', model.split(' ')[0])
+  url.searchParams.append('zoomType', 'fullscreen')
+  url.searchParams.append('modelYear', `${year}`)
+  url.searchParams.append('angle', `${angle}`)
+console.log(url)
+  return `${url}`
+}
 
