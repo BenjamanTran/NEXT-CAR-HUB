@@ -32,17 +32,15 @@ const SearchBar = () => {
 
   const updateSearchParams = (model: string, manufacturer: string) => {
     const searchParams = new URLSearchParams(window.location.search);
-    if (model) {
-      searchParams.set("model", model);
-    }
-    if (manufacturer) {
-      searchParams.set("manufacturer", manufacturer);
-    }
+    searchParams.set("model", model);
+    searchParams.set("manufacturer", manufacturer);
     const newPathname = `${
       window.location.pathname
     }?${searchParams.toString()}`;
+
     router.push(newPathname);
   };
+
   return (
     <form onSubmit={handleSearch} className="searchbar">
       <div className="searchbar__item">

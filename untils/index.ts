@@ -1,10 +1,13 @@
-import { CarProps } from "@/types"
+import { manufacturers } from "@/constants"
+import { CarProps, FilterProps } from "@/types"
+import { resourceUsage } from "process"
 
-export async function fetchCars() {
+export async function fetchCars(filters: FilterProps) {
   const X_RAPIDAPI_KEY = process.env.X_RAPIDAPI_KEY
   const X_RAPIDAPI_HOST = process.env.X_RAPIDAPI_HOST
-  const URL_API = process.env.URL_API
+  const { manufacturer, model, year, fuel, limit } = filters
 
+  const URL_API = `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${manufacturer}&model=${model}&year=${year}&limit=${limit}&fuel_type=${fuel}`
   if (!X_RAPIDAPI_KEY || !X_RAPIDAPI_HOST || !URL_API) {
     throw new Error('Missing environment variables')
   }
@@ -50,7 +53,13 @@ export const generateCarImageUrl = (car: CarProps, angle?: string) => {
   url.searchParams.append('zoomType', 'fullscreen')
   url.searchParams.append('modelYear', `${year}`)
   url.searchParams.append('angle', `${angle}`)
-console.log(url)
+
   return `${url}`
 }
 
+export const updateSearchParams = (type: string, value: string) => {
+  const searchParams = new URLSearchParams(window.location.search);
+  searchParams.set(type, value)
+
+  return `${window.location.pathname}?${searchParams.toString()}`
+}
