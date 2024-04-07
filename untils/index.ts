@@ -3,8 +3,8 @@ import { CarProps, FilterProps } from "@/types"
 import { resourceUsage } from "process"
 
 export async function fetchCars(filters: FilterProps) {
-  const X_RAPIDAPI_KEY = process.env.X_RAPIDAPI_KEY
-  const X_RAPIDAPI_HOST = process.env.X_RAPIDAPI_HOST
+  const X_RAPIDAPI_KEY = process.env.NEXT_PUBLIC_X_RAPIDAPI_KEY
+  const X_RAPIDAPI_HOST = process.env.NEXT_PUBLIC_X_RAPIDAPI_HOST
   const { manufacturer, model, year, fuel, limit } = filters
 
   const URL_API = `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${manufacturer}&model=${model}&year=${year}&limit=${limit}&fuel_type=${fuel}`
