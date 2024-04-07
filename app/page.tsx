@@ -1,4 +1,4 @@
-import { Hero, CustomFilter, SearchBar, CarCard } from "@/components";
+import { Hero, CustomFilter, SearchBar, CarCard, ShowMore } from "@/components";
 import { fuels, yearsOfProduction } from "@/constants";
 import { fetchCars } from "@/untils";
 
@@ -6,9 +6,9 @@ export default async function Home({searchParams}) {
   const allCars = await fetchCars({
     manufacturer: searchParams.manufacturer || "toyota",
     year: searchParams.year || '',
-    fuel: searchParams.fuel || "",
+    fuel: searchParams.fuel || '',
     limit: searchParams.limit || 10,
-    model: searchParams.model || "",
+    model: searchParams.model || '',
   })
   const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars
 
@@ -38,6 +38,10 @@ export default async function Home({searchParams}) {
               <CarCard car={car} />
             ))}
           </div>
+
+          <ShowMore 
+          pageNumber={(searchParams.limit || 10)/10}
+          isNext={(searchParams.limit || 10) > allCars.length}/>
         </section>
       ) : (
         <div className="home__error-container">

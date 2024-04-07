@@ -32,8 +32,9 @@ const SearchBar = () => {
 
   const updateSearchParams = (model: string, manufacturer: string) => {
     const searchParams = new URLSearchParams(window.location.search);
-    searchParams.set("model", model);
-    searchParams.set("manufacturer", manufacturer);
+    searchParams.set("model", model)
+    searchParams.set("manufacturer", manufacturer)
+    searchParams.set("limit", '10');
     const newPathname = `${
       window.location.pathname
     }?${searchParams.toString()}`;
